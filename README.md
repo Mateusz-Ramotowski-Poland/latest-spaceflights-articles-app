@@ -27,3 +27,4 @@ The goal is to write an application that will communicate with this API and have
 6) You can use TypeScript, but it is not required
 7) It is allowed to use NodeJS and NPM for setting up local hosting and/or compiling SASS/SCSS files.
 8) Please put your solution in a private repository on Github and invite reviewer@profil-software.com as a collaborator (any role with at least read-only access to code) -> https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository
+
