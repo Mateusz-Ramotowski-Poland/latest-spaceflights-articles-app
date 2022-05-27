@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Read latest spaceflights articles. Main page.</title>
 
-    
+    <script defer src="scripts/script.js"></script>
   </head>
   <body>
     <header>
@@ -28,19 +28,9 @@
         />
         <button>Button1</button>
       </form>
-      <ul>
-        <article>
-          <h2>Article Title</h2>
-          <p><span>News site</span><time>PublishedAt date</time></p>
-          <p>Summary</p>
-          <menu>
-            <button>Read article</button>
-            <button>Add to Library</button>
-            <!--which saves article in a library (if an article is already added, the button should be" Remove from Library ")  -->
-          </menu>
-        </article>
+      <ul class='articles-list'>
         <!-- Here I will put X fetched articles. 
-            after you scroll to the bottom of the page fetch the following X articles inside: next ul or iniside the same ul (?). -->
+            after you scroll to the bottom of the page fetch the following X articles inside the same ul. -->
       </ul>
     </main>
   </body>
