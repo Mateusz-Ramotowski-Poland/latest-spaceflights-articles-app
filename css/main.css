@@ -5,6 +5,7 @@ The above pattern is used for every class name    */
  
 /* Selectors are ordered alphabetically */
 /* Properties inside selector are ordered alphabetically*/
+/* *********************************************************************************************** */
 .main{
     margin: 0px 1vw 1vh 1vw;   /* vw mean 1% of the viewport's width. */
 }
@@ -57,4 +58,21 @@ The above pattern is used for every class name    */
 }
 .main-ul-article-menu-button{
     background-color: rgba(47, 120, 198, 0.952);
+}
+
+/* *********************************************************************************************** */
+@media (max-width: 1200px){
+    .main-ul-article{
+        margin-top: 2%;
+        width: 47%;
+    }
+}
+/* *********************************************************************************************** */
+@media (max-width: 768px){
+    .main-ul{
+        justify-content: center;
+    }
+    .main-ul-article{
+        width: 95%;
+    }
 }
