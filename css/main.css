@@ -1,0 +1,60 @@
+/*  How I named CSS classes, explanation using this example:
+class='header-nav-form-button'
+button is a child of form, which is a child of nav which is a child of header 
+The above pattern is used for every class name    */
+ 
+/* Selectors are ordered alphabetically */
+/* Properties inside selector are ordered alphabetically*/
+.main{
+    margin: 0px 1vw 1vh 1vw;   /* vw mean 1% of the viewport's width. */
+}
+.main-ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+.main-ul-article{
+    background-color: aliceblue;
+    border: 1px solid rgb(100, 98, 98);
+    border-radius: 4%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 1%;
+    padding: 1%;
+    width: 30.5%;
+}
+.main-ul-article-div-h2{
+    font-size: 1.3rem;
+    margin: 0;
+}
+.main-ul-article-div-p{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 1% 0;
+}
+.main-ul-article-menu{
+    margin-bottom: 0px;
+    padding: 0;
+}
+.main-ul-article-menu-a{
+    text-decoration: none;
+}
+.main-ul-article-menu-a-button{
+    background-color: rgba(119, 175, 236, 0.952);
+}
+.main-ul-article-menu-a-button, .main-ul-article-menu-button{  
+    border: 2px solid black;
+    border-radius:10%;
+    color: white;
+    font-size: 1.2rem;
+    padding: 2%;
+}
+.main-ul-article-menu-a-button:hover, .main-ul-article-menu-button:hover{  
+   color:blue;
+}
+.main-ul-article-menu-button{
+    background-color: rgba(47, 120, 198, 0.952);
+}

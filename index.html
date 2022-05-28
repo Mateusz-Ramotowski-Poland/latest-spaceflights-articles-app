@@ -6,29 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Read latest spaceflights articles. Main page.</title>
 
+    <link rel="stylesheet" href="css/body.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
     <script defer src="scripts/script.js"></script>
   </head>
   <body>
-    <header>
-      <h1>Latest spaceflights articles</h1>
-    </header>
-    <main>
-      <p>
-        span1. Fetched articles out of total:
-        <span>span2 45/12917<!--  --></span>
-      </p>
+    <header class="header">
+      <h1 class="header-h1">Latest spaceflights articles</h1>
+      <nav class="header-nav">
+        <menu class="header-nav-menu">
+          <a class="header-nav-menu-a" href="index.html">Main page</a>
+          <a class="header-nav-menu-a" href="pages/library.html"
+            >Library page</a
+          >
+        </menu>
 
-      <form action="">
-        <label for="limit-fetched-articles">Limit of fetched articles</label>
-        <input
-          type="text"
-          name=""
-          id="limit-fetched-articles"
-          placeholder="15-default value"
-        />
-        <button>Button1</button>
-      </form>
-      <ul class='articles-list'>
+        <p class="header-nav-p">
+          Fetched articles:
+          <span>45/12917</span>
+        </p>
+
+        <form class="header-nav-form" action="">
+          <label for="limit-fetched-articles">Fetch articles</label>
+          <input
+            class="header-nav-form-input"
+            id="limit-fetched-articles"
+            min="10"
+            max="50"
+            name=""
+            placeholder="15"
+            type="number"
+          />
+          <button class="header-nav-form-button">Submit</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="main">
+      <ul class="main-ul">
         <!-- Here I will put X fetched articles. 
             after you scroll to the bottom of the page fetch the following X articles inside the same ul. -->
       </ul>

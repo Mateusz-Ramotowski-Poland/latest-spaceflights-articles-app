@@ -1,6 +1,6 @@
 "use strict";
 
-const articlesList = document.querySelector(".articles-list");
+const articlesList = document.querySelector(".main-ul");
 
 getAndDisplayFetchedXArticles();
 
@@ -21,15 +21,17 @@ async function getAndDisplayFetchedXArticles() {
     updatedAt = getYearMonthDayString(updatedAt);
 
     const newArticle = `
-      <article>
-          <h2>${title}</h2>
-          <p><span>News site: ${newsSite}. </span><time>Published at: ${updatedAt}</time></p>
+      <article class="main-ul-article">
+          <div>
+              <p class='main-ul-article-div-p'><span>${newsSite}</span><time>${updatedAt}</time></p>
+              <h2 class='main-ul-article-div-h2'>${title}</h2>
+          </div>
           <p>${summary}</p>
-          <menu>
-              <a href="${url}">
-                  <button>Read article</button>
+          <menu class='main-ul-article-menu'>
+              <a class='main-ul-article-menu-a' href="${url}">
+                  <button class='main-ul-article-menu-a-button'>Read article</button>
               </a>
-              <button>Add to Library</button>
+              <button class='main-ul-article-menu-button'>Add to Library</button>
           </menu>
       </article>
           `;

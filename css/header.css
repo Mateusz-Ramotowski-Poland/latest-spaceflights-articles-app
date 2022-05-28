@@ -1,0 +1,55 @@
+/*  How I named CSS classes, explanation using this example:
+class='header-nav-form-button'
+button is a child of form, which is a child of nav which is a child of header 
+The above pattern is used for every class name    */
+ 
+/* Selectors are ordered alphabetically */
+/* Properties inside selector are ordered alphabetically*/
+.header{
+    background-color: white;
+    padding: 1% 0px;
+    position: sticky;
+    top: 0px;
+}
+.header-h1{
+    margin: 0;
+    padding-bottom: 1%;
+    text-align: center;
+}
+.header-nav{   
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.header-nav-form-button{
+    background-color: rgba(118, 225, 94, 0.952);
+    border: 2px solid black;
+    border-radius:20%;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+}
+.header-nav-form-button:hover{
+    color: green;
+}
+.header-nav-form-button, .header-nav-form-input{
+    font-size: 1.2rem;
+}
+.header-nav-menu{
+    margin: 0;
+    padding: 0;
+}
+.header-nav-menu-a{
+    color: inherit;
+    text-decoration: none;   
+}
+.header-nav-menu-a:hover{
+    color:blueviolet;
+}
+.header-nav-menu-a:nth-of-type(1){
+    padding-right: 10px;  
+}
+.header-nav-p{
+    margin: 0;
+}
