@@ -1,16 +1,20 @@
 "use strict";
-
+///////////////////////Below All variables declarations///////////////////////
 const articlesList = document.querySelector(".main-ul");
 
+let howManyArticlesToFetch = 15;
+///////////////////////Below All function callings///////////////////////
 getAndDisplayFetchedXArticles();
-
 ///////////////////////Below All function declarations alphabetically ordered///////////////////////
 async function getAndDisplayFetchedXArticles() {
   // What else I should do inside this function?
   // 1.Handle an possible errors - what to do when error ocurs?
   const fetchedArticles = await fetch(
-    "https://api.spaceflightnewsapi.net/v3/articles"
+    "https://api.spaceflightnewsapi.net/v3/articles?" + new URLSearchParams({
+      _limit:howManyArticlesToFetch,
+    })
   )
+
     .then((response) => response.json())
     .then((data) => data); // fetchedArticles is array of objects
 
