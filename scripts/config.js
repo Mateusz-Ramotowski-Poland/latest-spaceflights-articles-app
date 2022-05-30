@@ -1,1 +1,1 @@
-export const localStorageLibraryArticlesKey = 'libraryArticles';
+export const localStorageLibraryArticlesKey = "libraryArticles";

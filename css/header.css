@@ -22,7 +22,7 @@ The above pattern is used for every class name    */
     flex-direction: row;
     justify-content: space-around;
 }
-.header-nav-form-button{
+.header-nav-form-button, .header-nav-menu-button{
     background-color: rgba(118, 225, 94, 0.952);
     border: 2px solid black;
     border-radius:20%;

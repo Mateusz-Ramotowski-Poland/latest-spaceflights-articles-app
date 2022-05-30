@@ -5,7 +5,7 @@ const allFetchedArticlesTag =
 const articlesListTag = document.querySelector(".main-ul");
 const fetchArticlesNumberInput = document.querySelector(
   ".header-nav-form-input"
-); 
+);
 const formTag = document.querySelector(".header-nav-form");
 
 let allFetchedArticlesNumber = 0;
@@ -113,4 +113,3 @@ async function renderNumberOfAllArticles() {
 function renderNumberOfAllFetchedArticles() {
   allFetchedArticlesTag.textContent = allFetchedArticlesNumber;
 }
-

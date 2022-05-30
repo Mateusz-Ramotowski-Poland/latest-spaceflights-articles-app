@@ -2,7 +2,6 @@ import { localStorageLibraryArticlesKey } from "./config.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const listOfAllArticlesTag = document.querySelector(".main-ul");
 
-
 const libraryArticlesObjectsArray = JSON.parse(
   localStorage.getItem(localStorageLibraryArticlesKey)
 );
@@ -24,11 +23,19 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
     newLibraryArticle.innerHTML = chosenArticle.innerHTML;
     newLibraryArticle.id = chosenArticle.getAttribute("id");
 
-    libraryArticlesObjectsArray.push(newLibraryArticle);
-    localStorage.setItem(
-      localStorageLibraryArticlesKey,
-      JSON.stringify(libraryArticlesObjectsArray)
+    const IdOfChosenArticle = chosenArticle.getAttribute("id");
+    const idsOfLibraryArticlesObjectsArray = libraryArticlesObjectsArray.map(
+      (el) => el.id
     );
+
+    if (!idsOfLibraryArticlesObjectsArray.includes(IdOfChosenArticle)) {
+      libraryArticlesObjectsArray.push(newLibraryArticle);
+      localStorage.setItem(
+        localStorageLibraryArticlesKey,
+        JSON.stringify(libraryArticlesObjectsArray)
+      );
+    }
+
     isButtonChangedFromAddToRemoveNewly = true;
   }
 
@@ -54,7 +61,7 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
     event.target.textContent = "Add to Library";
   }
 
-  isButtonChangedFromAddToRemoveNewly = false
+  isButtonChangedFromAddToRemoveNewly = false;
 });
 ///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
 function getChosenArticle(event) {
