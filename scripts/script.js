@@ -1,6 +1,3 @@
-import { libraryArticlesObjectsArray } from "./functions.js";
-import { allFetchedArticlesTag } from "./functions.js";
-
 ///////////////////////Below All global variables declarations///////////////////////
 const savedLocalStorage = JSON.parse(localStorage.getItem('libraryArticles'));
 ///////////////////////Below All function callings///////////////////////
@@ -17,5 +14,5 @@ function renderArticle({id, innerHTML, publishedDate, title}) {
     </article>
     `;
     libraryArticlesObjectsArray.push(newArticle);
-    allFetchedArticlesTag.insertAdjacentHTML("beforeend", newArticle);
+    allFetchedArticlesTag.insertAdjacentHTML("beforeend", newArticles);
   }

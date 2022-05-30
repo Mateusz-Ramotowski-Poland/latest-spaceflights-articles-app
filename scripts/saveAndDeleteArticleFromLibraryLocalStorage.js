@@ -1,8 +1,7 @@
-import {libraryArticlesObjectsArray} from "./functions.js";
-
-import { getChosenArticle } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const listOfAllArticlesTag = document.querySelector(".main-ul");
+
+const libraryArticlesObjectsArray = [];
 ///////////////////////Below All function callings///////////////////////
 listOfAllArticlesTag.addEventListener("click", function (event) {
   //below event for 'Add to Library' buttons
@@ -64,4 +63,7 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
   event.target.textContent = "Add to Library";
   console.log(libraryArticlesObjectsArray); //DElete this line after development !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }); */
-
+///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
+function getChosenArticle(event) {
+  return event.target.closest(".main-ul-article");
+}
