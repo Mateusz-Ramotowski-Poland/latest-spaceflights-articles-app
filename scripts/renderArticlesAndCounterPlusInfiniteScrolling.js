@@ -2,7 +2,7 @@
 const allArticlesTag = document.querySelectorAll(".header-nav-p-span")[1];
 const allFetchedArticlesTag =
   document.querySelectorAll(".header-nav-p-span")[0];
-const articlesList = document.querySelector(".main-ul");
+const articlesListTag = document.querySelector(".main-ul");
 const fetchArticlesNumberInput = document.querySelector(
   ".header-nav-form-input"
 ); 
@@ -80,7 +80,7 @@ async function getAndRenderFetchedArticles() {
             </menu>
         </article>
             `;
-    articlesList.insertAdjacentHTML("beforeend", newArticle);
+    articlesListTag.insertAdjacentHTML("beforeend", newArticle);
   }
 
   allFetchedArticlesNumber += howManyArticlesToFetch;

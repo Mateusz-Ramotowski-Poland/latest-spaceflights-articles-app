@@ -1,7 +1,8 @@
+import { localStorageLibraryArticlesKey } from "./config.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const listOfAllArticlesTag = document.querySelector(".main-ul");
 
-const libraryArticlesObjectsArray = [];
+const libraryArticlesObjectsArray = JSON.parse(localStorage.getItem(localStorageLibraryArticlesKey));
 ///////////////////////Below All function callings///////////////////////
 listOfAllArticlesTag.addEventListener("click", function (event) {
   //below event for 'Add to Library' buttons
@@ -25,7 +26,7 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
 
   libraryArticlesObjectsArray.push(newLibraryArticle);
   localStorage.setItem(
-    "libraryArticles",
+    localStorageLibraryArticlesKey,
     JSON.stringify(libraryArticlesObjectsArray)
   );
 
