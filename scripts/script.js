@@ -1,33 +1,47 @@
-"use strict";
-///////////////////////Below All variables declarations///////////////////////
-const articlesList = document.querySelector(".main-ul");
+///////////////////////Below All global variables declarations///////////////////////
+const allArticlesTag = document.querySelectorAll(".header-nav-p-span")[1];
 const allFetchedArticlesTag =
-  document.querySelectorAll(".header-nav-p-span")[0]; // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-const allArticlesTag = document.querySelectorAll(".header-nav-p-span")[1]; // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  document.querySelectorAll(".header-nav-p-span")[0];
+const articlesList = document.querySelector(".main-ul");
 
-let isFetching = false; // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let howManyArticlesToFetch = 5;
-let allFetchedArticles = 0; // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+let allFetchedArticlesNumber = 0;
+let howManyArticlesToFetch = 15;
+let isFetching = false;
 ///////////////////////Below All function callings///////////////////////
-getAndRenderFetchedArticles();
-renderNumberOfAllArticles(); // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///////////////////////Below All function declarations alphabetically ordered///////////////////////
+renderArticlesAndArticlesCounterInitFunction(); //async function
+
+window.addEventListener("scroll", async function () {
+  if (checkIfNearBottomOfWEbPage() && isFetching === false) {
+    await getAndRenderFetchedArticles();
+    renderNumberOfAllFetchedArticles();
+  }
+});
+
+///////////////////////Below All function declarations alphabetically ordered by function name///////////////////////
+function checkIfNearBottomOfWEbPage() {
+  // Window.scrollY  - number of pixels that the document is currently scrolled vertically.
+  // document.body.scrollHeight  - heigth of whole body document
+  // window.innerHeight - viewport height
+  const howManyPixelsAboveBottom = 100;
+  return (
+    window.innerHeight + window.scrollY + howManyPixelsAboveBottom >=
+    document.body.scrollHeight
+  );
+}
+
 async function getAndRenderFetchedArticles() {
-  // What else I should do inside this function?
   // 1.Handle an possible errors - what to do when error ocurs?
-  isFetching = true; // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  isFetching = true;
   const fetchedArticles = await fetch(
     "https://api.spaceflightnewsapi.net/v3/articles?" +
       new URLSearchParams({
         _limit: howManyArticlesToFetch,
-        _start: allFetchedArticles, // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        _start: allFetchedArticlesNumber,
       })
-  )
-    .then((response) => response.json())
-    .then((data) => data); // fetchedArticles is array of objects
+  ).then((response) => response.json()); // fetchedArticles is array of objects
 
   for (let { title, updatedAt, summary, newsSite, url } of fetchedArticles) {
-    summary.length >= 200
+    summary.length > 200
       ? (summary = getShortenSummary(summary))
       : "Don't do anything";
     updatedAt = getYearMonthDayString(updatedAt);
@@ -50,66 +64,35 @@ async function getAndRenderFetchedArticles() {
     articlesList.insertAdjacentHTML("beforeend", newArticle);
   }
 
-  allFetchedArticles += howManyArticlesToFetch; // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  console.log(`allFetchedArticles: ${allFetchedArticles}`); // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  renderNumberOfAllFetchedArticles(); // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  isFetching = false; // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  allFetchedArticlesNumber += howManyArticlesToFetch;
+  isFetching = false;
 }
 
 function getShortenSummary(summary) {
   const indexOfLastSpace = summary.lastIndexOf(" ", 200);
-  return (summary = summary.slice(0, indexOfLastSpace)); // shorten to max 200 characters, if 200 character is in middle of the word then make it shorten
+  return summary.slice(0, indexOfLastSpace); // shorten to max 200 characters, don't cut in middle of the word
 }
 
 function getYearMonthDayString(longDateString) {
   return longDateString.slice(0, 10);
 }
-///////////////////////Below is my experimental area - Here I also declare ariables for my experiments///////////////////////
 
-//some lines are added above
-// they have comment // added line after last commit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-const howManyPixelsAboveBottom = 100;
-const body = document.querySelector("body");
-window.addEventListener("scroll", function () {
-  console.log(checkIfNearBottomOfWEbPage());
-  checkIfNearBottomOfWEbPage() && isFetching === false
-    ? getAndRenderFetchedArticles()
-    : "Do nothing"; // I must work with this line, but it works
-
-  //console.log(`scrollY: ${scrollY}, innerHeight: ${innerHeight}, bodyHeight: ${body.scrollHeight}`);
-  // You can't detect bottom of webpage with it
-});
-function checkIfNearBottomOfWEbPage() {
-  return (
-    window.innerHeight + window.scrollY + howManyPixelsAboveBottom >=
-    body.scrollHeight
-  );
+async function renderArticlesAndArticlesCounterInitFunction() {
+  renderNumberOfAllArticles(); //async function
+  await getAndRenderFetchedArticles(); //async function
+  renderNumberOfAllFetchedArticles();
 }
-// Window.scrollY  - The read-only scrollY property of the Window interface returns
-//the number of pixels that the document is currently scrolled vertically.
-//bodyHeight: ${body.scrollHeight}`  - heigth of whole body document
-//window.innerHeight - viewport height
-
-//conclusions: (when there is poziomy scrolbar)
-// bodyHeight = window.innerHeight + Window.scrollY
-
-// A viewport represents a polygonal (normally rectangular) area in computer graphics
-//that is currently being viewed. In web browser terms, it refers to the part of the document you're viewing which is currently visible
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function renderNumberOfAllArticles() {
   const numberOfAllArticles = await fetch(
     "https://api.spaceflightnewsapi.net/v3/articles/count"
-  )
-    .then((response) => response.json())
-    .then((data) => data); // fetchedArticles is array of objects
+  ).then((response) => response.json());
 
-  console.log(numberOfAllArticles);
   allArticlesTag.textContent = numberOfAllArticles;
 }
 
 function renderNumberOfAllFetchedArticles() {
-  console.log(allFetchedArticles, "oweojfjoef");
-  allFetchedArticlesTag.textContent = allFetchedArticles;
+  allFetchedArticlesTag.textContent = allFetchedArticlesNumber;
 }
+
+
