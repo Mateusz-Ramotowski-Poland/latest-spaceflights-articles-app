@@ -1,7 +1,7 @@
 # Author and other important information
 
-Author - Ramotowski Mateusz
-Inside master2 branch is newest code
+1. Author - Ramotowski Mateusz
+2. Inside master2 branch is newest code
 
 # Intro
 
@@ -32,3 +32,14 @@ The goal is to write an application that will communicate with this API and have
 6. You can use TypeScript, but it is not required
 7. It is allowed to use NodeJS and NPM for setting up local hosting and/or compiling SASS/SCSS files.
 8. Please put your solution in a private repository on Github and invite reviewer@profil-software.com as a collaborator (any role with at least read-only access to code) -> https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository
+
+# What should I correct in my code?
+1. isButtonChangedFromAddToRemoveNewly variable for add/remove article to library - It works but maybe I can do it better.
+2. I did not do sorting of articles inside library
+3. I should add error handling, everywhere when I use fetch method
+4. work on header layout for scren width smaller than 768 px
+5. Information in nav menu that I added article to library
+6. confirmation that X elements will be fetched information in nav menu
+7. save data to local storage before closing the tab not after every click - it will give better performance
+8. Code always can be cleaner and more readable
+
