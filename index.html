@@ -17,7 +17,9 @@
       rel="stylesheet"
     />
 
-    <script defer type="module" src="scripts/script.js"></script>
+    <script defer type="module" src="scripts/functions.js"></script>
+    <script defer type="module" src="scripts/renderArticlesAndCounterPlusInfiniteScrolling.js"></script>
+    <script defer type="module" src="scripts/saveAndDeleteArticleFromLibraryLocalStorage.js"></script>
   </head>
   <body>
     <header class="header">
@@ -42,7 +44,7 @@
             class="header-nav-form-input"
             id="limit-fetched-articles"
             min="5"
-            max="50"
+            max="100"
             placeholder="15"
             required
             type="number"

@@ -6,41 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Read latest spaceflights articles. Library.</title>
 
-    
+    <link rel="stylesheet" href="../css/body.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script defer type="module" src="../scripts/script.js"></script>
   </head>
   <body>
-    <header>
-      <h1>Latest spaceflights articles</h1>
-    </header>
-    <main>
-      <p>
-        span1. Fetched articles out of total:
-        <span>span2 45/12917<!--  --></span>
-      </p>
+    <header class="header">
+      <h1 class="header-h1">Latest spaceflights articles</h1>
 
-      <form action="">
-        <label for="limit-fetched-articles">Limit of fetched articles</label>
-        <input
-          type="text"
-          name=""
-          id="limit-fetched-articles"
-          placeholder="15-default value"
-        />
-        <button>Button1</button>
-      </form>
-      <ul>
-        <article>
-          <h2>Article Title</h2>
-          <p><span>News site</span><time>PublishedAt date</time></p>
-          <p>Summary</p>
-          <menu>
-            <button>Read article</button>
-            <button>Add to Library</button>
-            <!--which saves article in a library (if an article is already added, the button should be" Remove from Library ")  -->
-          </menu>
-        </article>
+      <nav class="header-nav">
+        <menu class="header-nav-menu">
+          <a class="header-nav-menu-a" href="../index.html">Main</a>
+          <a class="header-nav-menu-a" href="../pages/library.html"
+            >Library</a
+          >
+        </menu>
+
+        <p class="header-nav-p">
+          Articles:
+          <span class="header-nav-p-span">0</span>/<span class="header-nav-p-span">X</span>
+        </p>
+
+        <form class="header-nav-form" action="">
+          <label for="limit-fetched-articles">Fetch articles</label>
+          <input
+            class="header-nav-form-input"
+            id="limit-fetched-articles"
+            min="5"
+            max="100"
+            placeholder="15"
+            required
+            type="number"
+          />
+          <button class="header-nav-form-button">Submit</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="main">
+      <ul class="main-ul">
         <!-- Here I will put X fetched articles. 
-            after you scroll to the bottom of the page fetch the following X articles inside: next ul or iniside the same ul (?). -->
+            after you scroll near the bottom of the page fetch the following X articles inside the same ul. -->
       </ul>
     </main>
   </body>
