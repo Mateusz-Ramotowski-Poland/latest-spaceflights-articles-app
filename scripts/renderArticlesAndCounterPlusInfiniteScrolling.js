@@ -18,7 +18,7 @@ const fetchArticlesNumberInput = document.querySelector(
 ); 
 const formTag = document.querySelector(".header-nav-form");
 
-//allFetchedArticlesNumber = 0;
+allFetchedArticlesNumber = 0;
 // howManyArticlesToFetch = 15;
 // isFetching = false;
 ///////////////////////Below All function callings///////////////////////
