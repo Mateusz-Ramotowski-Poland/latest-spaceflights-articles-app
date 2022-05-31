@@ -60,10 +60,10 @@ function renderArticlesNumber() {
 
 ////////////below my playground/////////////////////////////////////////////////
 
-const sortingButtons = document.querySelectorAll(".header-nav-menu-button");
+const sortingButtons = document.querySelectorAll(".header-menu-button");
 const sortAscendingByTitleButton = sortingButtons[0];
-const sortDescendingByTitleButton = sortingButtons[1];
-const sortAscendingByPublishedDateButton = sortingButtons[2];
+const sortAscendingByPublishedDateButton = sortingButtons[1];
+const sortDescendingByTitleButton = sortingButtons[2];
 const sortDescendingByPublishedDateButton = sortingButtons[3];
 /////////////////////////////////////////////////////////////////////////////////
 function sortArrayByAndRender(
@@ -110,7 +110,6 @@ function renderArrayArticles(arr) {
 sortDescendingByTitleButton.addEventListener("click", function () {
   sortArrayByAndRender(libraryArticlesObjectsArray, "descending", "title");
 });
-
 sortAscendingByTitleButton.addEventListener("click", function () {
   sortArrayByAndRender(libraryArticlesObjectsArray, "ascending", "title");
 });
