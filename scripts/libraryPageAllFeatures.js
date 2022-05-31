@@ -7,11 +7,9 @@ const libraryArticlesObjectsArray = JSON.parse(
   localStorage.getItem(localStorageLibraryArticlesKey)
 );
 ///////////////////////Below All function callings///////////////////////
-if (libraryArticlesObjectsArray) {
-  libraryArticlesObjectsArray.forEach(function (Article) {
-    renderArticle(Article);
-  });
-}
+libraryArticlesObjectsArray
+  ? renderArrayArticles(libraryArticlesObjectsArray)
+  : "Do nothing";
 
 renderArticlesNumber();
 
@@ -47,29 +45,81 @@ function getChosenArticle(event) {
   return event.target.closest(".main-ul-article");
 }
 
-function renderArticle({ id, innerHTML, publishedDate, title }) {
+/* function renderArticle({ id, innerHTML, publishedDate, title }) {
   const newArticle = `<article class="main-ul-article" id='${id}' data-title='${title}' data-published_date='${publishedDate}'>
     ${innerHTML}
     </article>
     `;
 
   articlesListTag.insertAdjacentHTML("beforeend", newArticle);
-}
+} */
 
 function renderArticlesNumber() {
   allArticlesNumberTag.textContent = libraryArticlesObjectsArray.length;
 }
 
 ////////////below my playground/////////////////////////////////////////////////
-/* console.log(libraryArticlesObjectsArray);
 
-const sortingButtons = document.querySelectorAll('.header-nav-menu-button');
+const sortingButtons = document.querySelectorAll(".header-nav-menu-button");
 const sortAscendingByTitleButton = sortingButtons[0];
+const sortDescendingByTitleButton = sortingButtons[1];
+const sortAscendingByPublishedDateButton = sortingButtons[2];
+const sortDescendingByPublishedDateButton = sortingButtons[3];
+/////////////////////////////////////////////////////////////////////////////////
+function sortArrayByAndRender(
+  arrArray,
+  descendingOrAscendingString,
+  byPropertyNameString
+) {
+  const deepCopyOfArray = JSON.parse(JSON.stringify(arrArray));
 
-sortAscendingByTitleButton.addEventListener('click', function(){
-  console.log('hello');
-  libraryArticlesObjectsArray.sort();
-  libraryArticlesObjectsArray.forEach(function (Article) {
-    renderArticle(Article);
+  deepCopyOfArray.sort(function (a, b) {
+    const articleATitle = a[byPropertyNameString].toUpperCase();
+    const articleBTitle = b[byPropertyNameString].toUpperCase();
+
+    if (descendingOrAscendingString === "descending") {
+      if (articleATitle > articleBTitle) return -1;
+      if (articleATitle < articleBTitle) return 1;
+      return 0;
+    }
+
+    if (descendingOrAscendingString === "ascending") {
+      if (articleATitle < articleBTitle) return -1;
+      if (articleATitle > articleBTitle) return 1;
+      return 0;
+    }
   });
-}) */
+
+  articlesListTag.innerHTML = "";
+
+  renderArrayArticles(deepCopyOfArray);
+}
+
+function renderArrayArticles(arr) {
+  arr.forEach(function ({ id, innerHTML, publishedDate, title }) {
+    const newArticle = `<article class="main-ul-article" id='${id}' data-title='${title}' data-published_date='${publishedDate}'>
+    ${innerHTML}
+    </article>
+    `;
+
+    articlesListTag.insertAdjacentHTML("beforeend", newArticle);
+  });
+}
+
+////////////////////////////////below four buttons for sorting///////////////////////////////
+sortDescendingByTitleButton.addEventListener("click", function () {
+  sortArrayByAndRender(libraryArticlesObjectsArray, "descending", "title");
+});
+
+sortAscendingByTitleButton.addEventListener("click", function () {
+  sortArrayByAndRender(libraryArticlesObjectsArray, "ascending", "title");
+});
+sortAscendingByPublishedDateButton.addEventListener("click", function () {
+  sortArrayByAndRender(libraryArticlesObjectsArray, "ascending", "publishedDate");
+});
+sortDescendingByPublishedDateButton.addEventListener("click", function () {
+  sortArrayByAndRender(libraryArticlesObjectsArray, "descending", "publishedDate");
+});
+
+
+

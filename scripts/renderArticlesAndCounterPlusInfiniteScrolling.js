@@ -51,7 +51,6 @@ async function getAndRenderFetchedArticles() {
       })
   ).then((response) => response.json()); // fetchedArticles is array of objects
 
-  //console.log(fetchedArticles); //DElete this line after development !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   for (let {
     id,
     newsSite,
