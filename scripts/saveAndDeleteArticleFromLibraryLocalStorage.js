@@ -1,4 +1,6 @@
+import { howLongShowMessage } from "./config.js";
 import { localStorageLibraryArticlesKey } from "./config.js";
+import { renderMessageAndDeleteAboutXTime } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const listOfAllArticlesTag = document.querySelector(".main-ul");
 
@@ -36,6 +38,10 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
       );
     }
 
+    renderMessageAndDeleteAboutXTime(
+      `You added article to library`,
+      howLongShowMessage
+    );
     isButtonChangedFromAddToRemoveNewly = true;
   }
 
@@ -59,6 +65,10 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
     );
 
     event.target.textContent = "Add to Library";
+    renderMessageAndDeleteAboutXTime(
+      `You removed article from library`,
+      howLongShowMessage
+    );
   }
 
   isButtonChangedFromAddToRemoveNewly = false;

@@ -1,4 +1,6 @@
+import { howLongShowMessage } from "./config.js";
 import { localStorageLibraryArticlesKey } from "./config.js";
+import { renderMessageAndDeleteAboutXTime } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const allArticlesNumberTag = document.querySelector(".header-nav-p-span");
 const articlesListTag = document.querySelector(".main-ul");
@@ -39,6 +41,10 @@ articlesListTag.addEventListener("click", function (event) {
   );
 
   renderArticlesNumber();
+  renderMessageAndDeleteAboutXTime(
+    `You removed article from library`,
+    howLongShowMessage
+  );
 });
 ///////////////////////Below All function declarations alphabetically ordered by function name///////////////////////
 function getChosenArticle(event) {

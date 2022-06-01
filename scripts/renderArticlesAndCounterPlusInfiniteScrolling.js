@@ -1,3 +1,4 @@
+import { howLongShowMessage } from "./config.js";
 import { renderMessageAndDeleteAboutXTime } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const allArticlesTag = document.querySelectorAll(".header-nav-p-span")[1];
@@ -8,7 +9,6 @@ const fetchArticlesNumberInput = document.querySelector(
   ".header-nav-form-input"
 );
 const formTag = document.querySelector(".header-nav-form");
-
 
 let allFetchedArticlesNumber = 0;
 let howManyArticlesToFetch = 15;
@@ -22,6 +22,10 @@ formTag.addEventListener("submit", function (event) {
   // is not smaller than 5 and is bigger than 100
   event.preventDefault(); // I don't reload a page after submiting the form because of this
   howManyArticlesToFetch = parseInt(fetchArticlesNumberInput.value);
+  renderMessageAndDeleteAboutXTime(
+    `Now, You will see ${howManyArticlesToFetch} new articles when You reach bottom of webpage`,
+    howLongShowMessage
+  );
 });
 
 window.addEventListener("scroll", async function () {
@@ -114,7 +118,3 @@ async function renderNumberOfAllArticles() {
 function renderNumberOfAllFetchedArticles() {
   allFetchedArticlesTag.textContent = allFetchedArticlesNumber;
 }
-/////////////////////////////below my playground////////////////////////////
-
-//console.log(headerTag);  //headerTag is not defined
-renderMessageAndDeleteAboutXTime('Hello', 5000)
