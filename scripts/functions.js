@@ -1,11 +1,14 @@
 ///////////////////////Below All global variables declarations///////////////////////
 const headerTag = document.querySelector('.header');
+export const hideMenuTag = document.querySelector('.header-nav-div');
 const navTag = document.querySelector('.header-nav');
 export const showMenuTag = document.querySelector('.header-div');
+const sortingButtonsTag = document.querySelector('.header-menu');
 ///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
 export function hideMenu(){
   navTag.style.display = 'none';
   showMenuTag.style.display = 'block';
+  sortingButtonsTag ? sortingButtonsTag.style.display = 'none' : 'Do nothing';
 }
 export function renderMessageAndDeleteAboutXTime (messageString, timeToDeleteInMilisecondsNumber){
   const oldTagToDelete = headerTag.querySelector('.header-aside');
@@ -27,4 +30,5 @@ export function renderMessageAndDeleteAboutXTime (messageString, timeToDeleteInM
 export function showMenu(){
   navTag.style.display = 'flex';
   showMenuTag.style.display = 'none';
+  sortingButtonsTag ? sortingButtonsTag.style.display = 'flex' : 'Do nothing';
 }

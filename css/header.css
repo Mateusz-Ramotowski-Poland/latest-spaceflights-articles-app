@@ -78,9 +78,17 @@ The above pattern is used for every class name    */
     margin: 0;
 }
 /* *********************************************************************************************** */
+@media (max-width: 912px){
+    .header-menu-button{
+        margin-top: 5px;
+    }
+}
 @media (max-width: 768px){
     .header-div{
         display:block;
+    }
+    .header-menu{
+        display:none;
     }
     .header-nav{   
         display:none;

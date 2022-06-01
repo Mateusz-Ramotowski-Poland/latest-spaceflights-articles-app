@@ -1,11 +1,11 @@
 import { hideMenu } from "./functions.js";
+import { hideMenuTag } from "./functions.js";
 import { howLongShowMessage } from "./config.js";
 import { localStorageLibraryArticlesKey } from "./config.js";
 import { renderMessageAndDeleteAboutXTime } from "./functions.js";
 import { showMenu } from "./functions.js";
 import { showMenuTag } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
-const hideMenuTag = document.querySelector('.header-nav-div');
 const listOfAllArticlesTag = document.querySelector(".main-ul");
 
 const libraryArticlesObjectsArray = JSON.parse(

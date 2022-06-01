@@ -1,6 +1,10 @@
+import { hideMenu } from "./functions.js";
+import { hideMenuTag } from "./functions.js";
 import { howLongShowMessage } from "./config.js";
 import { localStorageLibraryArticlesKey } from "./config.js";
 import { renderMessageAndDeleteAboutXTime } from "./functions.js";
+import { showMenu } from "./functions.js";
+import { showMenuTag } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const allArticlesNumberTag = document.querySelector(".header-nav-p-span");
 const articlesListTag = document.querySelector(".main-ul");
@@ -14,6 +18,9 @@ libraryArticlesObjectsArray
   : "Do nothing";
 
 renderArticlesNumber();
+
+hideMenuTag.addEventListener('click', hideMenu);
+showMenuTag.addEventListener('click', showMenu);
 
 articlesListTag.addEventListener("click", function (event) {
   //below event for 'Remove from Library' buttons
