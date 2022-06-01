@@ -93,9 +93,11 @@ function renderArrayArticles(arr) {
     articlesListTag.insertAdjacentHTML("beforeend", newArticle);
   });
 }
+
 function renderArticlesNumber() {
   allArticlesNumberTag.textContent = libraryArticlesObjectsArray.length;
 }
+
 function sortArrayByAndRender(
   arrArray,
   descendingOrAscendingString,

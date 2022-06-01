@@ -1,3 +1,4 @@
+import { handleError} from "./functions.js";
 import { howLongShowMessage } from "./config.js";
 import { howManyArticlesAtBeggining } from "./config.js";
 import { howManyPixelsAboveBottomYouShouldStartFetchArticles } from "./config.js";
@@ -51,15 +52,17 @@ function checkIfNearBottomOfWEbPage() {
 }
 
 async function getAndRenderFetchedArticles() {
-  // 1.Handle an possible errors - what to do when error ocurs?
   isFetching = true;
   const fetchedArticles = await fetch(
+    // fetchedArticles is array of objects
     "https://api.spaceflightnewsapi.net/v3/articles?" +
       new URLSearchParams({
         _limit: howManyArticlesToFetch,
         _start: allFetchedArticlesNumber,
       })
-  ).then((response) => response.json()); // fetchedArticles is array of objects
+  )
+    .then((response) => response.json())
+    .catch( (error) => handleError(error));
 
   for (let {
     id,
@@ -106,15 +109,17 @@ function getYearMonthDayString(longDateString) {
 }
 
 async function renderArticlesAndArticlesCounterInitFunction() {
-  renderNumberOfAllArticles(); //async function
-  await getAndRenderFetchedArticles(); //async function
+  renderNumberOfAllArticles(); 
+  await getAndRenderFetchedArticles(); 
   renderNumberOfAllFetchedArticles();
 }
 
 async function renderNumberOfAllArticles() {
   const numberOfAllArticles = await fetch(
     "https://api.spaceflightnewsapi.net/v3/articles/count"
-  ).then((response) => response.json());
+  )
+    .then((response) => response.json())
+    .catch((error) => handleError(error));
 
   allArticlesTag.textContent = numberOfAllArticles;
 }

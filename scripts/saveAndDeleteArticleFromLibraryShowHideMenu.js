@@ -13,7 +13,7 @@ const listOfAllArticlesTag = document.querySelector(".main-ul");
 //below other variables ordered alphabetically//
 const libraryArticlesObjectsArray = JSON.parse(
   localStorage.getItem(localStorageLibraryArticlesKey)
-);
+) ?? [];
 let isButtonChangedFromAddToRemoveNewly = false;
 ///////////////////////Below All function callings///////////////////////
 hideMenuTag.addEventListener("click", hideMenu);
@@ -35,6 +35,8 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
     newLibraryArticle.innerHTML = chosenArticle.innerHTML;
     newLibraryArticle.id = chosenArticle.getAttribute("id");
 
+    
+    
     const idsOfLibraryArticlesObjectsArray = libraryArticlesObjectsArray.map(
       (el) => el.id
     );

@@ -1,3 +1,4 @@
+import { howLongShowMessage } from "./config.js";
 ///////////////////////Below All global variables declarations///////////////////////
 //below DOM elements ordered alphabetically//
 const headerTag = document.querySelector(".header");
@@ -8,6 +9,14 @@ const sortingButtonsTag = document.querySelector(".header-menu");
 ///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
 export function getChosenArticle(event) {
   return event.target.closest(".main-ul-article");
+}
+
+export function handleError(error){
+  renderMessageAndDeleteAboutXTime(
+    `Error occured: ${error.message}`,
+    howLongShowMessage
+  );
+  return [];
 }
 
 export function hideMenu() {
