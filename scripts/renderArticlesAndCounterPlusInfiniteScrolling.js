@@ -1,6 +1,9 @@
 import { howLongShowMessage } from "./config.js";
+import { howManyArticlesAtBeggining } from "./config.js";
+import { howManyPixelsAboveBottomYouShouldStartFetchArticles } from "./config.js";
 import { renderMessageAndDeleteAboutXTime } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
+//below DOM elements ordered alphabetically//
 const allArticlesTag = document.querySelectorAll(".header-nav-p-span")[1];
 const allFetchedArticlesTag =
   document.querySelectorAll(".header-nav-p-span")[0];
@@ -9,9 +12,9 @@ const fetchArticlesNumberInput = document.querySelector(
   ".header-nav-form-input"
 );
 const formTag = document.querySelector(".header-nav-form");
-
+//below other variables ordered alphabetically//
 let allFetchedArticlesNumber = 0;
-let howManyArticlesToFetch = 15;
+let howManyArticlesToFetch = howManyArticlesAtBeggining;
 let isFetching = false;
 ///////////////////////Below All function callings///////////////////////
 renderArticlesAndArticlesCounterInitFunction(); //async function
@@ -39,9 +42,10 @@ function checkIfNearBottomOfWEbPage() {
   // Window.scrollY  - number of pixels that the document is currently scrolled vertically.
   // document.body.scrollHeight  - heigth of whole body document
   // window.innerHeight - viewport height
-  const howManyPixelsAboveBottom = 100;
   return (
-    window.innerHeight + window.scrollY + howManyPixelsAboveBottom >=
+    window.innerHeight +
+      window.scrollY +
+      howManyPixelsAboveBottomYouShouldStartFetchArticles >=
     document.body.scrollHeight
   );
 }

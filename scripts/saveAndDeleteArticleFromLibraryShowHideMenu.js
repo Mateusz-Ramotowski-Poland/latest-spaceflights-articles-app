@@ -1,20 +1,23 @@
+import { getChosenArticle } from "./functions.js";
 import { hideMenu } from "./functions.js";
 import { hideMenuTag } from "./functions.js";
 import { howLongShowMessage } from "./config.js";
 import { localStorageLibraryArticlesKey } from "./config.js";
 import { renderMessageAndDeleteAboutXTime } from "./functions.js";
+import { saveDataInLocalStorage } from "./functions.js";
 import { showMenu } from "./functions.js";
 import { showMenuTag } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
+//below DOM elements ordered alphabetically//
 const listOfAllArticlesTag = document.querySelector(".main-ul");
-
+//below other variables ordered alphabetically//
 const libraryArticlesObjectsArray = JSON.parse(
   localStorage.getItem(localStorageLibraryArticlesKey)
 );
 let isButtonChangedFromAddToRemoveNewly = false;
 ///////////////////////Below All function callings///////////////////////
-hideMenuTag.addEventListener('click', hideMenu);
-showMenuTag.addEventListener('click', showMenu);
+hideMenuTag.addEventListener("click", hideMenu);
+showMenuTag.addEventListener("click", showMenu);
 
 listOfAllArticlesTag.addEventListener("click", function (event) {
   //below event for 'Add to Library' buttons and 'Remove from Library' buttons
@@ -32,16 +35,15 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
     newLibraryArticle.innerHTML = chosenArticle.innerHTML;
     newLibraryArticle.id = chosenArticle.getAttribute("id");
 
-    const IdOfChosenArticle = chosenArticle.getAttribute("id");
     const idsOfLibraryArticlesObjectsArray = libraryArticlesObjectsArray.map(
       (el) => el.id
     );
 
-    if (!idsOfLibraryArticlesObjectsArray.includes(IdOfChosenArticle)) {
+    if (!idsOfLibraryArticlesObjectsArray.includes(newLibraryArticle.id)) {
       libraryArticlesObjectsArray.push(newLibraryArticle);
-      localStorage.setItem(
+      saveDataInLocalStorage(
         localStorageLibraryArticlesKey,
-        JSON.stringify(libraryArticlesObjectsArray)
+        libraryArticlesObjectsArray
       );
     }
 
@@ -58,7 +60,7 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
     isButtonChangedFromAddToRemoveNewly === false
   ) {
     const chosenArticle = getChosenArticle(event);
-    const idChosenArticle = chosenArticle.getAttribute("id");
+    const idChosenArticle = parseInt(chosenArticle.getAttribute("id"));
 
     const IndexOfArticleToBeDeleted = libraryArticlesObjectsArray.findIndex(
       (el) => el.id === idChosenArticle
@@ -66,9 +68,9 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
 
     libraryArticlesObjectsArray.splice(IndexOfArticleToBeDeleted, 1);
 
-    localStorage.setItem(
-      "libraryArticles",
-      JSON.stringify(libraryArticlesObjectsArray)
+    saveDataInLocalStorage(
+      localStorageLibraryArticlesKey,
+      libraryArticlesObjectsArray
     );
 
     event.target.textContent = "Add to Library";
@@ -81,17 +83,3 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
   isButtonChangedFromAddToRemoveNewly = false;
 });
 ///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
-function getChosenArticle(event) {
-  return event.target.closest(".main-ul-article");
-}
-
-
-
-
-
-
-
-
-
-
-

@@ -1,26 +1,55 @@
+import { getChosenArticle } from "./functions.js";
 import { hideMenu } from "./functions.js";
 import { hideMenuTag } from "./functions.js";
 import { howLongShowMessage } from "./config.js";
 import { localStorageLibraryArticlesKey } from "./config.js";
 import { renderMessageAndDeleteAboutXTime } from "./functions.js";
+import { saveDataInLocalStorage } from "./functions.js";
 import { showMenu } from "./functions.js";
 import { showMenuTag } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
+//below DOM elements ordered alphabetically//
 const allArticlesNumberTag = document.querySelector(".header-nav-p-span");
 const articlesListTag = document.querySelector(".main-ul");
-
+const sortingButtons = document.querySelectorAll(".header-menu-button");
+const sortAscendingByPublishedDateButton = sortingButtons[1];
+const sortAscendingByTitleButton = sortingButtons[0];
+const sortDescendingByPublishedDateButton = sortingButtons[3];
+const sortDescendingByTitleButton = sortingButtons[2];
+//below other variables ordered alphabetically//
 const libraryArticlesObjectsArray = JSON.parse(
   localStorage.getItem(localStorageLibraryArticlesKey)
 );
-///////////////////////Below All function callings///////////////////////
+///////////////////////Below All function callings//////////////////////////////////
 libraryArticlesObjectsArray
   ? renderArrayArticles(libraryArticlesObjectsArray)
   : "Do nothing";
 
 renderArticlesNumber();
 
-hideMenuTag.addEventListener('click', hideMenu);
-showMenuTag.addEventListener('click', showMenu);
+hideMenuTag.addEventListener("click", hideMenu);
+showMenuTag.addEventListener("click", showMenu);
+
+sortDescendingByTitleButton.addEventListener("click", function () {
+  sortArrayByAndRender(libraryArticlesObjectsArray, "descending", "title");
+});
+sortAscendingByTitleButton.addEventListener("click", function () {
+  sortArrayByAndRender(libraryArticlesObjectsArray, "ascending", "title");
+});
+sortAscendingByPublishedDateButton.addEventListener("click", function () {
+  sortArrayByAndRender(
+    libraryArticlesObjectsArray,
+    "ascending",
+    "publishedDate"
+  );
+});
+sortDescendingByPublishedDateButton.addEventListener("click", function () {
+  sortArrayByAndRender(
+    libraryArticlesObjectsArray,
+    "descending",
+    "publishedDate"
+  );
+});
 
 articlesListTag.addEventListener("click", function (event) {
   //below event for 'Remove from Library' buttons
@@ -42,9 +71,9 @@ articlesListTag.addEventListener("click", function (event) {
   libraryArticlesObjectsArray.splice(IndexOfArticleToBeDeleted, 1);
   chosenArticle.remove();
 
-  localStorage.setItem(
+  saveDataInLocalStorage(
     localStorageLibraryArticlesKey,
-    JSON.stringify(libraryArticlesObjectsArray)
+    libraryArticlesObjectsArray
   );
 
   renderArticlesNumber();
@@ -54,31 +83,19 @@ articlesListTag.addEventListener("click", function (event) {
   );
 });
 ///////////////////////Below All function declarations alphabetically ordered by function name///////////////////////
-function getChosenArticle(event) {
-  return event.target.closest(".main-ul-article");
-}
-
-/* function renderArticle({ id, innerHTML, publishedDate, title }) {
-  const newArticle = `<article class="main-ul-article" id='${id}' data-title='${title}' data-published_date='${publishedDate}'>
+function renderArrayArticles(arr) {
+  arr.forEach(function ({ id, innerHTML, publishedDate, title }) {
+    const newArticle = `<article class="main-ul-article" id='${id}' data-title='${title}' data-published_date='${publishedDate}'>
     ${innerHTML}
     </article>
     `;
 
-  articlesListTag.insertAdjacentHTML("beforeend", newArticle);
-} */
-
+    articlesListTag.insertAdjacentHTML("beforeend", newArticle);
+  });
+}
 function renderArticlesNumber() {
   allArticlesNumberTag.textContent = libraryArticlesObjectsArray.length;
 }
-
-////////////below my playground/////////////////////////////////////////////////
-
-const sortingButtons = document.querySelectorAll(".header-menu-button");
-const sortAscendingByTitleButton = sortingButtons[0];
-const sortAscendingByPublishedDateButton = sortingButtons[1];
-const sortDescendingByTitleButton = sortingButtons[2];
-const sortDescendingByPublishedDateButton = sortingButtons[3];
-/////////////////////////////////////////////////////////////////////////////////
 function sortArrayByAndRender(
   arrArray,
   descendingOrAscendingString,
@@ -107,31 +124,3 @@ function sortArrayByAndRender(
 
   renderArrayArticles(deepCopyOfArray);
 }
-
-function renderArrayArticles(arr) {
-  arr.forEach(function ({ id, innerHTML, publishedDate, title }) {
-    const newArticle = `<article class="main-ul-article" id='${id}' data-title='${title}' data-published_date='${publishedDate}'>
-    ${innerHTML}
-    </article>
-    `;
-
-    articlesListTag.insertAdjacentHTML("beforeend", newArticle);
-  });
-}
-
-////////////////////////////////below four buttons for sorting///////////////////////////////
-sortDescendingByTitleButton.addEventListener("click", function () {
-  sortArrayByAndRender(libraryArticlesObjectsArray, "descending", "title");
-});
-sortAscendingByTitleButton.addEventListener("click", function () {
-  sortArrayByAndRender(libraryArticlesObjectsArray, "ascending", "title");
-});
-sortAscendingByPublishedDateButton.addEventListener("click", function () {
-  sortArrayByAndRender(libraryArticlesObjectsArray, "ascending", "publishedDate");
-});
-sortDescendingByPublishedDateButton.addEventListener("click", function () {
-  sortArrayByAndRender(libraryArticlesObjectsArray, "descending", "publishedDate");
-});
-
-
-
