@@ -25,7 +25,7 @@ formTag.addEventListener("submit", function (event) {
   // inside index.html a have a validation that submitted input data:
   // is not an empty string and is number converted to string
   // is not smaller than 5 and is bigger than 100
-  event.preventDefault(); // I don't reload a page after submiting the form because of this
+  event.preventDefault();
   howManyArticlesToFetch = parseInt(fetchArticlesNumberInput.value);
   renderMessageAndDeleteAboutXTime(
     `Now, You will see ${howManyArticlesToFetch} new articles when You reach bottom of webpage`,
@@ -41,9 +41,6 @@ window.addEventListener("scroll", async function () {
 });
 ///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
 function checkIfNearBottomOfWEbPage() {
-  // Window.scrollY  - number of pixels that the document is currently scrolled vertically.
-  // document.body.scrollHeight  - heigth of whole body document
-  // window.innerHeight - viewport height
   return (
     window.innerHeight +
       window.scrollY +
@@ -56,7 +53,7 @@ async function getAndRenderFetchedArticles() {
   isFetching = true;
   const fetchedArticles = await fetch(
     // fetchedArticles is array of objects
-    "https://api.spaceflightnewsapi.net/v3/articl?" +
+    "https://api.spaceflightnewsapi.net/v3/articles?" +
       new URLSearchParams({
         _limit: howManyArticlesToFetch,
         _start: allFetchedArticlesNumber,
@@ -105,7 +102,7 @@ async function getAndRenderFetchedArticles() {
 
 function getShortenSummary(summary) {
   const indexOfLastSpace = summary.lastIndexOf(" ", 200);
-  return summary.slice(0, indexOfLastSpace); // shorten to max 200 characters, don't cut in middle of the word
+  return summary.slice(0, indexOfLastSpace);
 }
 
 function getYearMonthDayString(longDateString) {

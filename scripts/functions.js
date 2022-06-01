@@ -6,12 +6,12 @@ export const hideMenuTag = document.querySelector(".header-nav-div");
 const navTag = document.querySelector(".header-nav");
 export const showMenuTag = document.querySelector(".header-div");
 const sortingButtonsTag = document.querySelector(".header-menu");
-///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
+///////////////////Below All function declarations ordered alphabetically by function name///
 export function getChosenArticle(event) {
   return event.target.closest(".main-ul-article");
 }
 
-export function handleErrorRenderMessageForUser(error){
+export function handleErrorRenderMessageForUser(error) {
   renderMessageAndDeleteAboutXTime(
     `Error occurred: ${error.message}`,
     howLongShowMessage
@@ -47,10 +47,7 @@ export function renderMessageAndDeleteAboutXTime(
 }
 
 export function saveDataInLocalStorage(localStorageKeyString, data) {
-  localStorage.setItem(
-    localStorageKeyString,
-    JSON.stringify(data)
-  );
+  localStorage.setItem(localStorageKeyString, JSON.stringify(data));
 }
 
 export function showMenu() {
@@ -59,7 +56,7 @@ export function showMenu() {
   sortingButtonsTag ? (sortingButtonsTag.style.display = "flex") : "Do nothing";
 }
 
-export function throwErrorIfNotSuccessfulResponseStatus (response){
+export function throwErrorIfNotSuccessfulResponseStatus(response) {
   if (!(response.status >= 200 && response.status <= 299)) {
     throw new Error(`Response status (${response.status})`);
   }

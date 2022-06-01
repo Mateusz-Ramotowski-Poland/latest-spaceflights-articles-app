@@ -11,16 +11,14 @@ import { showMenuTag } from "./functions.js";
 //below DOM elements ordered alphabetically//
 const listOfAllArticlesTag = document.querySelector(".main-ul");
 //below other variables ordered alphabetically//
-const libraryArticlesObjectsArray = JSON.parse(
-  localStorage.getItem(localStorageLibraryArticlesKey)
-) ?? [];
+const libraryArticlesObjectsArray =
+  JSON.parse(localStorage.getItem(localStorageLibraryArticlesKey)) ?? [];
 let isButtonChangedFromAddToRemoveNewly = false;
 ///////////////////////Below All function callings///////////////////////
 hideMenuTag.addEventListener("click", hideMenu);
 showMenuTag.addEventListener("click", showMenu);
 
 listOfAllArticlesTag.addEventListener("click", function (event) {
-  //below event for 'Add to Library' buttons and 'Remove from Library' buttons
   if (
     event.target.classList.contains("main-ul-article-menu-button") &&
     event.target.textContent === "Add to Library"
@@ -35,8 +33,6 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
     newLibraryArticle.innerHTML = chosenArticle.innerHTML;
     newLibraryArticle.id = chosenArticle.getAttribute("id");
 
-    
-    
     const idsOfLibraryArticlesObjectsArray = libraryArticlesObjectsArray.map(
       (el) => el.id
     );
@@ -84,4 +80,3 @@ listOfAllArticlesTag.addEventListener("click", function (event) {
 
   isButtonChangedFromAddToRemoveNewly = false;
 });
-///////////////////////Below All function declarations ordered alphabetically by function name///////////////////////
