@@ -11,9 +11,9 @@ export function getChosenArticle(event) {
   return event.target.closest(".main-ul-article");
 }
 
-export function handleError(error){
+export function handleErrorRenderMessageForUser(error){
   renderMessageAndDeleteAboutXTime(
-    `Error occured: ${error.message}`,
+    `Error occurred: ${error.message}`,
     howLongShowMessage
   );
   return [];
@@ -57,4 +57,10 @@ export function showMenu() {
   navTag.style.display = "flex";
   showMenuTag.style.display = "none";
   sortingButtonsTag ? (sortingButtonsTag.style.display = "flex") : "Do nothing";
+}
+
+export function throwErrorIfNotSuccessfulResponseStatus (response){
+  if (!(response.status >= 200 && response.status <= 299)) {
+    throw new Error(`Response status (${response.status})`);
+  }
 }

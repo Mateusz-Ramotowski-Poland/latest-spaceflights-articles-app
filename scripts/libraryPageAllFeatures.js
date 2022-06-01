@@ -19,7 +19,7 @@ const sortDescendingByTitleButton = sortingButtons[2];
 //below other variables ordered alphabetically//
 const libraryArticlesObjectsArray = JSON.parse(
   localStorage.getItem(localStorageLibraryArticlesKey)
-);
+) ?? [];
 ///////////////////////Below All function callings//////////////////////////////////
 libraryArticlesObjectsArray
   ? renderArrayArticles(libraryArticlesObjectsArray)
@@ -103,7 +103,7 @@ function sortArrayByAndRender(
   descendingOrAscendingString,
   byPropertyNameString
 ) {
-  const deepCopyOfArray = JSON.parse(JSON.stringify(arrArray));
+  const deepCopyOfArray = JSON.parse(JSON.stringify(arrArray)) ?? [];
 
   deepCopyOfArray.sort(function (a, b) {
     const articleATitle = a[byPropertyNameString].toUpperCase();

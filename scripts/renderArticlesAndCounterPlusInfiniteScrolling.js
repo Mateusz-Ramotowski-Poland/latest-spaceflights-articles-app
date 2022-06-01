@@ -1,8 +1,9 @@
-import { handleError} from "./functions.js";
+import { handleErrorRenderMessageForUser } from "./functions.js";
 import { howLongShowMessage } from "./config.js";
 import { howManyArticlesAtBeggining } from "./config.js";
 import { howManyPixelsAboveBottomYouShouldStartFetchArticles } from "./config.js";
 import { renderMessageAndDeleteAboutXTime } from "./functions.js";
+import { throwErrorIfNotSuccessfulResponseStatus } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
 //below DOM elements ordered alphabetically//
 const allArticlesTag = document.querySelectorAll(".header-nav-p-span")[1];
@@ -55,14 +56,17 @@ async function getAndRenderFetchedArticles() {
   isFetching = true;
   const fetchedArticles = await fetch(
     // fetchedArticles is array of objects
-    "https://api.spaceflightnewsapi.net/v3/articles?" +
+    "https://api.spaceflightnewsapi.net/v3/articl?" +
       new URLSearchParams({
         _limit: howManyArticlesToFetch,
         _start: allFetchedArticlesNumber,
       })
   )
-    .then((response) => response.json())
-    .catch( (error) => handleError(error));
+    .then((response) => {
+      throwErrorIfNotSuccessfulResponseStatus(response);
+      return response.json();
+    })
+    .catch((error) => handleErrorRenderMessageForUser(error));
 
   for (let {
     id,
@@ -109,8 +113,8 @@ function getYearMonthDayString(longDateString) {
 }
 
 async function renderArticlesAndArticlesCounterInitFunction() {
-  renderNumberOfAllArticles(); 
-  await getAndRenderFetchedArticles(); 
+  renderNumberOfAllArticles();
+  await getAndRenderFetchedArticles();
   renderNumberOfAllFetchedArticles();
 }
 
@@ -118,10 +122,15 @@ async function renderNumberOfAllArticles() {
   const numberOfAllArticles = await fetch(
     "https://api.spaceflightnewsapi.net/v3/articles/count"
   )
-    .then((response) => response.json())
-    .catch((error) => handleError(error));
+    .then((response) => {
+      throwErrorIfNotSuccessfulResponseStatus(response);
+      return response.json();
+    })
+    .catch((error) => handleErrorRenderMessageForUser(error));
 
-  allArticlesTag.textContent = numberOfAllArticles;
+  typeof numberOfAllArticles === "number"
+    ? (allArticlesTag.textContent = numberOfAllArticles)
+    : "Do nothing";
 }
 
 function renderNumberOfAllFetchedArticles() {
