@@ -8,8 +8,14 @@ The above pattern is used for every class name    */
 .header{
     background-color: white;
     padding: 1% 0px;
-    position: sticky;
+    position: sticky; 
     top: 0px;
+}
+.header-aside{
+    background-color: rgb(51, 30, 192);
+    color: white;
+    margin-top: 5px;
+    text-align: center;
 }
 .header-h1{
     margin: 0;

@@ -1,3 +1,4 @@
+import { renderMessageAndDeleteAboutXTime } from "./functions.js";
 ///////////////////////Below All global variables declarations///////////////////////
 const allArticlesTag = document.querySelectorAll(".header-nav-p-span")[1];
 const allFetchedArticlesTag =
@@ -7,6 +8,7 @@ const fetchArticlesNumberInput = document.querySelector(
   ".header-nav-form-input"
 );
 const formTag = document.querySelector(".header-nav-form");
+
 
 let allFetchedArticlesNumber = 0;
 let howManyArticlesToFetch = 15;
@@ -112,3 +114,7 @@ async function renderNumberOfAllArticles() {
 function renderNumberOfAllFetchedArticles() {
   allFetchedArticlesTag.textContent = allFetchedArticlesNumber;
 }
+/////////////////////////////below my playground////////////////////////////
+
+//console.log(headerTag);  //headerTag is not defined
+renderMessageAndDeleteAboutXTime('Hello', 5000)
