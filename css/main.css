@@ -55,6 +55,7 @@ The above pattern is used for every class name    */
 }
 .main-ul-article-menu-a-button:hover, .main-ul-article-menu-button:hover{  
    color:blue;
+   cursor: pointer
 }
 .main-ul-article-menu-button{
     background-color: rgba(47, 120, 198, 0.952);

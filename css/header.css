@@ -17,6 +17,14 @@ The above pattern is used for every class name    */
     margin-top: 5px;
     text-align: center;
 }
+.header-div{
+    display: none;
+    text-align: center;
+}
+.header-div:hover, .header-nav-div:hover{
+    color:blue;
+    cursor: pointer;
+}
 .header-h1{
     margin: 0;
     padding-bottom: 1%;
@@ -33,6 +41,9 @@ The above pattern is used for every class name    */
     flex-wrap: wrap;
     justify-content: space-around;
 }
+.header-nav-div{
+    text-align: center;
+}
 .header-nav-form-button, .header-menu-button{
     background-color: rgba(118, 225, 94, 0.952);
     border: 2px solid black;
@@ -43,6 +54,7 @@ The above pattern is used for every class name    */
 }
 .header-nav-form-button:hover, .header-menu-button:hover{
     color: green;
+    cursor: pointer;
 }
 .header-nav-form-button, .header-nav-form-input{
     font-size: 1.2rem;
@@ -57,10 +69,24 @@ The above pattern is used for every class name    */
 }
 .header-nav-menu-a:hover{
     color:blueviolet;
+    cursor: pointer;
 }
 .header-nav-menu-a:nth-of-type(1){
     padding-right: 10px;  
 }
 .header-nav-p{
     margin: 0;
+}
+/* *********************************************************************************************** */
+@media (max-width: 768px){
+    .header-div{
+        display:block;
+    }
+    .header-nav{   
+        display:none;
+        flex-direction: column;
+    }
+    .header-nav-form, .header-nav-p{
+        margin-top: 10px;
+    }
 }
