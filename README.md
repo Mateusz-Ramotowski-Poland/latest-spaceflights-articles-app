@@ -30,7 +30,7 @@ I was using Chrome developer tools for testing my application.
 - Button "Remove from library".
 - Separate page "Library" to display a list of saved articles.
 - Articles in library are saved after leaving the page in local storage.
-- You can sort library articles ascending and descending by publishedAt date and by title
+- You can sort library articles ascending and descending by publishedAt date and by title.
 
 ## Project Status
 
